@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Generate & Deploy Tiles
 
 on:
@@ -15,14 +16,26 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
+=======
+name: RochGIS Tile Generator
+
+on:
+  workflow_dispatch:
+>>>>>>> 75cd6fbe1782bb6eb3536c8ba628ab57c7a45384
 
 jobs:
   build:
     runs-on: ubuntu-latest
+<<<<<<< HEAD
     timeout-minutes: 60
 
     steps:
       - name: Checkout repository
+=======
+
+    steps:
+      - name: Checkout repo
+>>>>>>> 75cd6fbe1782bb6eb3536c8ba628ab57c7a45384
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -30,6 +43,7 @@ jobs:
         with:
           python-version: "3.11"
 
+<<<<<<< HEAD
       - name: Install Tippecanoe
         run: |
           sudo apt-get update -qq
@@ -72,3 +86,31 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+=======
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Download parcels
+        run: |
+          python scripts/download_parcels.py
+
+      - name: Install Tippecanoe
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tippecanoe
+
+      - name: Generate tiles
+        run: |
+          bash scripts/generate_tiles.sh
+
+      - name: Validate output
+        run: |
+          python scripts/validate_tiles.py
+
+      - name: Upload tiles artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiles
+          path: tiles
+>>>>>>> 75cd6fbe1782bb6eb3536c8ba628ab57c7a45384
