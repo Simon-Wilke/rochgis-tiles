@@ -1,0 +1,13 @@
+# Generated data — too large for git
+data/parcels.geojson
+parcels.mbtiles
+
+# Tile output — deployed via GitHub Actions artifact
+tiles/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
