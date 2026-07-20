@@ -13,6 +13,12 @@ tippecanoe -o tiles.mbtiles \
   --no-feature-limit \
   --no-tile-size-limit \
   --layer=parcels \
+  --detect-shared-borders \
+  --no-tiny-polygon-reduction \
+  --simplification=4 \
+  --simplify-only-low-zooms \
+  --coalesce-densest-as-needed \
+  --extend-zooms-if-still-dropping \
   data/parcels.geojson
 
 # Convert to directory structure
